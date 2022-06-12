@@ -3,6 +3,7 @@ import { GET_PROJECT } from '../queries/ProjectQueries';
 import { useQuery } from '@apollo/client';
 import { useParams, Link } from 'react-router-dom';
 import ClientInfo from '../components/ClientInfo';
+import DeleteProjectButton from '../components/DeleteProjectButton';
 
 const Project = () => {
   const { id } = useParams();
@@ -22,9 +23,10 @@ const Project = () => {
           </Link>
           <h1>{data.project.name}</h1>
           <p>{data.project.description}</p>
-          <h5 className='mt-5'> Project Status</h5>
+          <h5 className='mt-5'>Project Status</h5>
           <p className='lead'>{data.project.status}</p>
           <ClientInfo client={data.project.client} />
+          <DeleteProjectButton projectId={data.project.id} />
         </div>
       )}
     </>

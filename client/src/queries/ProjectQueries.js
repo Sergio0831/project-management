@@ -1,22 +1,27 @@
 import { gql } from '@apollo/client';
 
+const PROJECT_FRAGMENT = gql`
+  fragment ProjectFragment on Project {
+    id
+    name
+    status
+  }
+`;
+
 const GET_PROJECTS = gql`
   query getProjects {
     projects {
-      id
-      name
-      status
+      ...ProjectFragment
     }
   }
+  ${PROJECT_FRAGMENT}
 `;
 
 const GET_PROJECT = gql`
   query getProject($id: ID!) {
     project(id: $id) {
-      id
-      name
+      ...ProjectFragment
       description
-      status
       client {
         id
         name
@@ -25,6 +30,7 @@ const GET_PROJECT = gql`
       }
     }
   }
+  ${PROJECT_FRAGMENT}
 `;
 
 export { GET_PROJECTS, GET_PROJECT };
