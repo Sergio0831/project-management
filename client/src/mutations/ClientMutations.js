@@ -1,24 +1,20 @@
 import { gql } from '@apollo/client';
+import { CLIENT_FRAGMENT } from '../fragments';
 
-const DELETE_CLIENT = gql`
+export const DELETE_CLIENT = gql`
   mutation deleteClient($id: ID!) {
     deleteClient(id: $id) {
-      id
-      name
-      email
-      phone
+      ...ClientFragment
     }
   }
+  ${CLIENT_FRAGMENT}
 `;
 
-const ADD_CLIENT = gql`
+export const ADD_CLIENT = gql`
   mutation addClient($name: String!, $email: String!, $phone: String!) {
     addClient(name: $name, email: $email, phone: $phone) {
-      name
-      email
-      phone
+      ...ClientFragment
     }
   }
+  ${CLIENT_FRAGMENT}
 `;
-
-export { DELETE_CLIENT, ADD_CLIENT };

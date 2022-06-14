@@ -1,8 +1,8 @@
 import { useMutation } from '@apollo/client';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UPDATE_PROJECT } from '../mutations/ProjectMutations';
-import { GET_PROJECT } from '../queries/ProjectQueries';
+import { UPDATE_PROJECT } from '../mutations';
+import { GET_PROJECT } from '../queries';
 
 const EditProjectForm = ({ project }) => {
   const navigate = useNavigate();

@@ -1,14 +1,11 @@
 import { gql } from '@apollo/client';
+import { CLIENT_FRAGMENT } from '../fragments';
 
-const GET_CLIENTS = gql`
+export const GET_CLIENTS = gql`
   query getClients {
     clients {
-      id
-      name
-      email
-      phone
+      ...ClientFragment
     }
   }
+  ${CLIENT_FRAGMENT}
 `;
-
-export { GET_CLIENTS };

@@ -1,14 +1,7 @@
 import { gql } from '@apollo/client';
+import { CLIENT_FRAGMENT, PROJECT_FRAGMENT } from '../fragments';
 
-const PROJECT_FRAGMENT = gql`
-  fragment ProjectFragment on Project {
-    id
-    name
-    status
-  }
-`;
-
-const GET_PROJECTS = gql`
+export const GET_PROJECTS = gql`
   query getProjects {
     projects {
       ...ProjectFragment
@@ -17,20 +10,15 @@ const GET_PROJECTS = gql`
   ${PROJECT_FRAGMENT}
 `;
 
-const GET_PROJECT = gql`
+export const GET_PROJECT = gql`
   query getProject($id: ID!) {
     project(id: $id) {
       ...ProjectFragment
       description
       client {
-        id
-        name
-        email
-        phone
+        ...ClientFragment
       }
     }
   }
-  ${PROJECT_FRAGMENT}
+  ${(PROJECT_FRAGMENT, CLIENT_FRAGMENT)}
 `;
-
-export { GET_PROJECTS, GET_PROJECT };

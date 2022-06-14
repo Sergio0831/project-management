@@ -1,14 +1,16 @@
 import Spinner from '../components/Spinner';
-import { GET_PROJECT } from '../queries/ProjectQueries';
 import { useQuery } from '@apollo/client';
 import { useParams, Link } from 'react-router-dom';
-import ClientInfo from '../components/ClientInfo';
-import DeleteProjectButton from '../components/DeleteProjectButton';
-import EditProjectForm from '../components/EditProjectForm';
+import {
+  ClientInfo,
+  DeleteProjectButton,
+  EditProjectForm
+} from '../components';
+import { GET_PROJECTS } from '../queries';
 
 const Project = () => {
   const { id } = useParams();
-  const { data, loading, error } = useQuery(GET_PROJECT, {
+  const { data, loading, error } = useQuery(GET_PROJECTS, {
     variables: { id }
   });
 

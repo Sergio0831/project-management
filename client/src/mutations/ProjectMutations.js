@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { CLIENT_FRAGMENT, PROJECT_FRAGMENT } from '../fragments';
 
 export const ADD_PROJECT = gql`
   mutation AddProject(
@@ -13,18 +14,14 @@ export const ADD_PROJECT = gql`
       status: $status
       clientId: $clientId
     ) {
-      id
-      name
+      ...ProjectFragment
       description
-      status
       client {
-        id
-        name
-        email
-        phone
+        ...ClientFragment
       }
     }
   }
+  ${(PROJECT_FRAGMENT, CLIENT_FRAGMENT)}
 `;
 
 export const DELETE_PROJECT = gql`
@@ -48,16 +45,12 @@ export const UPDATE_PROJECT = gql`
       description: $description
       status: $status
     ) {
-      id
-      name
+      ...ProjectFragment
       description
-      status
       client {
-        id
-        name
-        email
-        phone
+        ...ClientFragment
       }
     }
   }
+  ${(PROJECT_FRAGMENT, CLIENT_FRAGMENT)}
 `;
